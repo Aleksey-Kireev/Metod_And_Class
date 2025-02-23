@@ -37,20 +37,19 @@ public class Metods {
     }
 
     // Метод поверки доставки
-    public static void checkDeliv(int deliveryDistance) {
+    public static int checkDeliv(int deliveryDistance) {
         int tMin = 1;    //  Переменная минимального дня доставки
-        if (deliveryDistance <= 20) {
-            System.out.println("Для доставки карты потребуется " + tMin + " день");
+        if (deliveryDistance >= 0 && deliveryDistance <= 20) {
+            tMin = 1;
         } else if (deliveryDistance > 20 && deliveryDistance <= 60) {
-            tMin = tMin + 1;
-            System.out.println("Для доставки карты потребуется " + tMin + " дня");
+            tMin += 1;
         } else if (deliveryDistance > 60 && deliveryDistance <= 100) {
-            tMin = tMin + 2;
-            System.out.println("Для доставки карты потребуется " + tMin + " дня");
-        } else if (deliveryDistance > 100) {
-            System.out.println("Доставка карты не осуществляется ");
+            tMin += 2;
+        } else if (deliveryDistance > 100 | deliveryDistance < 0) {
+            tMin = 0;
         }
 
+        return tMin;
     }
 
     public static void main(String[] args) {
@@ -83,9 +82,15 @@ public class Metods {
 //     ---------  Заадача № 3 ------
 
         System.out.println(" \n ---- Задача № 3 ----");
-        System.out.println(" \n Введите расстояние до Вас : ");
+        System.out.print(" \n Введите расстояние до Вас : ");
         int deliveryDistance = inNum.nextInt();
-        checkDeliv(deliveryDistance);
+        int day = checkDeliv(deliveryDistance);
+        String mess = switch (day) {
+            case 1 -> "Для доставки карты потребуется %d день";
+            case 2, 3 -> "Для доставки карты потребуется %d дня";
+            default -> "Доставка карты не осуществляется ";
+        };
+        System.out.printf(mess + " ", day);
 
 
     }
