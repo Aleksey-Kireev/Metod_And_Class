@@ -92,6 +92,5 @@ public class Metods {
         };
         System.out.printf(mess + " ", day);
 
-
     }
 }

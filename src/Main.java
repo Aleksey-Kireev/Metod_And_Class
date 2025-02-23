@@ -4,7 +4,5 @@ public class Main {
 
         DZ_metods.Metods.main(args);            //  Вызов класса с ДЗ методы
 
-
-
     }
 }
